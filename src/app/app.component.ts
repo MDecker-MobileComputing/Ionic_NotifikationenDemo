@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+
+  constructor(private menuController: MenuController) {}
+
+  /**
+   * Event-Handler-Methode, um Menü an linker Seite zu schließen.
+   */
+  menuSchliessen() {
+    
+    this.menuController.close();
+  }  
 }

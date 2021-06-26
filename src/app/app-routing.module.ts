@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'ueber',
+    loadChildren: () => import('./ueber/ueber.module').then( m => m.UeberPageModule)
+  },
 ];
 
 @NgModule({

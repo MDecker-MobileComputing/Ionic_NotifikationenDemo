@@ -1,3 +1,16 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="start" menuId="first">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Notifikationen-Demo</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item routerLink="/home"  routerDirection="forward" (click)="menuSchliessen()" >Hauptseite</ion-item>
+        <ion-item routerLink="/ueber" routerDirection="forward" (click)="menuSchliessen()" >Seite 2</ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet main></ion-router-outlet><!-- Attribut "main" ist wichtig, siehe https://www.damirscorner.com/blog/posts/20190906-MakingAMenuWorkInIonic4.html -->
 </ion-app>
