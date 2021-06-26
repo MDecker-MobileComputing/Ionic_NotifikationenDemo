@@ -33,9 +33,16 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"></meta-data>
         </provider>
+
+        <!-- Beispiel: https://github.com/ammaappathunai13/adsZworld/blob/239dcafa74074083eceacd4eb9b97ba92b1b8b15/app/src/main/AndroidManifest.xml#L61 -->
+        <meta-data android:name="com.google.firebase.messaging.default_notification_icon"
+                   android:resource="@android:drawable/btn_plus" />
+
     </application>
 
     <!-- Permissions -->
 
     <uses-permission android:name="android.permission.INTERNET" />
+
+
 </manifest>
