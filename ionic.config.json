@@ -1,0 +1,7 @@
+{
+  "name": "Pushnotifikation",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
