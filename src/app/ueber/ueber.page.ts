@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FCM } from '@capacitor-community/fcm';
+import { PushNotifications } from '@capacitor/push-notifications';
 import { Clipboard } from '@capacitor/clipboard';
 import { HelferleinService } from '../helferlein.service';
-import { PushNotifications } from '@capacitor/push-notifications';
+
 
 /**
  * Plugin für Zugriff auf Clipboard: https://capacitorjs.com/docs/apis/clipboard

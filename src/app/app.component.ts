@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
-import { PushNotifications } from '@capacitor/push-notifications';
+import { PushNotifications, PushNotificationSchema } from '@capacitor/push-notifications';
 import { HelferleinService } from './helferlein.service';
 import { Capacitor } from '@capacitor/core';
 
@@ -27,14 +27,32 @@ export class AppComponent {
       await PushNotifications.requestPermissions();
       await PushNotifications.register();
       await this.helferlein.zeigeToast("App hat sich für Push-Notifikationen registriert.");
+
+      await this.eventHandlerRegistrieren();  
     });
 
   }
 
   /**
+   * Event-Handler für den Empfang einer Push-Nachricht definieren, wenn die App zu diesem Zeitpunkt
+   * im Vordergrund ist.
+   */
+  private async eventHandlerRegistrieren() {
+
+    await PushNotifications.addListener(
+                              "pushNotificationReceived",
+                              async (benachrichtigung: PushNotificationSchema) => {                    
+
+                                  this.helferlein.zeigeToast(`Push-Nachricht mit Titel "${benachrichtigung.title}" empfangen.`);
+                              }
+                            );  
+    console.log("Event-Handler für >pushNotificationReceived< definiert.");      
+  }
+
+  /**
    * Event-Handler-Methode, um Menü an linker Seite zu schließen.
    */
-  menuSchliessen() {
+  public menuSchliessen() {
     
     this.menuController.close();
   }  
