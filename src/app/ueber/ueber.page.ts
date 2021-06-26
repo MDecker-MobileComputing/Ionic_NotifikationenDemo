@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FCM } from '@capacitor-community/fcm';
+import { Clipboard } from '@capacitor/clipboard';
+import { HelferleinService } from '../helferlein.service';
 
+/**
+ * Plugin für Zugriff auf Clipboard: https://capacitorjs.com/docs/apis/clipboard
+ */
 @Component({
   selector: 'app-ueber',
   templateUrl: './ueber.page.html',
@@ -7,9 +13,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UeberPage implements OnInit {
 
-  constructor() { }
+  /** Member-Variable mit Token wird an UI-Element gebunden. */
+  public fcmToken: string = "";
 
+  /**
+   * Konstruktor für Dependency Injection.
+   */
+  constructor(private helferlein: HelferleinService) { }              
+
+  /**
+   * Lifecycle-Methode, liest Token (wenn vorhanden) aus und schreibt
+   * es in die Member-Variable.
+   */
   ngOnInit() {
+
+    FCM.getToken()
+
+      .then((antwort) => { this.fcmToken = antwort.token })
+      .catch((fehler) => { this.fcmToken = "Fehler bei Abfrage Token: " + fehler });
+  }
+
+
+  /**
+   * Event-Handler-Methode für Button "In Zwischenablage kopieren".
+   * Für Zugriff auf Zwischenablage mit Ionic siehe auch
+   * https://www.remotestack.io/ionic-copy-to-clipboard-integration-tutorial/
+   */
+  public async onZwischenablageButton() {
+
+    await Clipboard.write({string: this.fcmToken});          
+    await this.helferlein.zeigeToast("Text wurde in die Zwischenablage kopiert.");
   }
 
 }

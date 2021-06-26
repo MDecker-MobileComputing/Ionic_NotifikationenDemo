@@ -9,4 +9,19 @@
 
 <ion-content>
 
+    <ion-label>Token für Firebase Cloud Messaging (FCM):</ion-label>
+
+    <ion-textarea 
+      readonly
+      rows="5" 
+      [(ngModel)]="fcmToken">
+    </ion-textarea>
+
+    &nbsp;
+
+    <ion-button expand="block" 
+                color="primary"
+                (click)="onZwischenablageButton()">In Zwischenablage kopieren</ion-button>
+    &nbsp;
+
 </ion-content>
