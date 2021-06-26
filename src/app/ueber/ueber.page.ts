@@ -33,10 +33,11 @@ export class UeberPage implements OnInit {
 
     FCM.getToken()
       .then((antwort) => { this.fcmToken = antwort.token })
-      .catch((fehler) => { this.fcmToken = "Fehler bei Abfrage Token: " + fehler });
+      .catch((fehler) => { this.fcmToken = fehler + "" });
 
     PushNotifications.checkPermissions()
-                    .then( (ergebnis) => {this.berechtigungsStatus = ergebnis.receive;} );                     
+                     .then( (ergebnis) => {this.berechtigungsStatus = ergebnis.receive;} )                  
+                     .catch((fehler) => {this.berechtigungsStatus = fehler});
   }
 
 

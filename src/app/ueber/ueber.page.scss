@@ -4,7 +4,12 @@ ion-content {
     --padding-start: 20px;
     --padding-top: 20px;
   }
+  
+ion-textarea {
+    background: silver;
+}
 
-  ion-textarea {
-      background: silver;
-  }
+
+ion-item {
+    --padding-top: 10px;
+}
