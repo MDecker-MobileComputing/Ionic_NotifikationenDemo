@@ -16,13 +16,11 @@ export class AppComponent {
               private platform: Platform,
               private helferlein: HelferleinService) {
 
-
     if (Capacitor.getPlatform() === "web") {
 
       this.helferlein.zeigeToast("Notifikationen stehen für Ausführung als Web-App nicht zur Verfügung.");
       return;
     }
-
 
     this.platform.ready().then(async () => {
 
