@@ -57,9 +57,11 @@ export class Benachrichtigung {
      * Getter für Payload (Body) der Nachricht.
      * 
      * @returns Text aus Body der Nachricht oder entsprechender Hinweis, wenn Body
-     *          leer war.
+     *          leer war (d.h. nur aus Leerzeichen bestand; in der Web-Oberfläche 
+     *          kann keine Notifikation abgeschickt werden, wenn nicht mindestens
+     *          ein paar Leerzeichen für den Body der Nachricht eingegeben wurden).
      */
-    public getNachrichtenBody() {
+    public getNachrichtenBody(): string {
 
         if (!this.nachrichtenBody || this.nachrichtenBody.trim().length === 0) {
 
