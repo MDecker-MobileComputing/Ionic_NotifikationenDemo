@@ -22,6 +22,10 @@ export class BenachrichtigungsService {
   /** Array aller empfangenen Benachrichtigungen, wird auf UI in Liste dargestellt. */
   public nachrichtenArray: Benachrichtigung[] = [];
 
+  /** 
+   * Object wird von Hauptseite gesetzt, damit es über eine Änderung im Array benachrichtigt wird 
+   * eine Aktualisierung der Liste durchführen kann.
+   */ 
   public changeDetector: ChangeDetectorRef;
 
   /**
@@ -49,6 +53,16 @@ export class BenachrichtigungsService {
   }
 
   /**
+   * Fügt neue Benachrichtigung in Array ein und löst einen Refresh aus.
+   * @param benachrichtigung In Array einzufügendes Element
+   */
+  private neueBenachrichtigungInListe(benachrichtigung: Benachrichtigung) {
+
+    this.nachrichtenArray.push(benachrichtigung);
+    if (this.changeDetector != null) { this.changeDetector.detectChanges(); }
+  }
+
+  /**
    * Event-Handler für den Empfang von Push-Nachrichten definieren, wenn die App zu diesem
    * Zeitpunkt im **Vordergrund** ist.
    */
@@ -65,11 +79,9 @@ export class BenachrichtigungsService {
                                                                     benachrichtigung.data.eigenes_attribut,
                                                                     false // imHintergrundEmpfangen
                                                                   ); 
-                                    this.nachrichtenArray.push(b);
-                                    if (this.changeDetector != null) { this.changeDetector.detectChanges(); }
+                                    this.neueBenachrichtigungInListe(b);
                                 }
                               );
-      console.log("Event-Handler für >pushNotificationReceived< definiert.");
   }
 
   /**
@@ -96,11 +108,9 @@ export class BenachrichtigungsService {
                                             notification.data.eigenes_attribut,
                                             true // imHintergrundEmpfangen
             ); 
-            this.nachrichtenArray.push(b);
-            if (this.changeDetector != null) { this.changeDetector.detectChanges(); }
+            this.neueBenachrichtigungInListe(b);
         }
       );
-      console.log("Event-Handler für >pushNotificationActionPerformed< definiert.");
   }
 
 }

@@ -13,13 +13,12 @@ import { ChangeDetectorRef } from "@angular/core";
 export class HomePage {
 
   /**
-   * Konstruktor für Dependency Injection
+   * Konstruktor für Dependency Injection.
    */
   constructor(private benachrichtigungsService: BenachrichtigungsService,
               public changeDetector: ChangeDetectorRef) {
 
       benachrichtigungsService.changeDetector = changeDetector;
-
   }
 
 }
