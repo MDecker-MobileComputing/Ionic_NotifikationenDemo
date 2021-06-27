@@ -59,6 +59,7 @@ export class BenachrichtigungsService {
 
                                     const b = new Benachrichtigung( benachrichtigung.title,                                                                 
                                                                     benachrichtigung.body,
+                                                                    benachrichtigung.data.eigenes_attribut,
                                                                     false // imHintergrundEmpfangen
                                                                   ); 
                                     this.nachrichtenArray.push(b);
@@ -80,8 +81,15 @@ export class BenachrichtigungsService {
             this.helferlein.zeigeToast("Auf Push-Nachricht geklickt, die empfangen wurde, während die App nicht im Vordergrund war.");
 
             const notification = benachrichtigung.notification;
-            const b = new Benachrichtigung( notification.title, 
-                                            notification.body,
+          
+            // Wenn die Benachrichtigung im Hintergrund empfangen wurde, dann stehen titel und body nicht zur Verfügung,
+            // wir verwenden deshalb eigene Attribute.
+            const titel  = notification.data.eigener_titel  ? notification.data.eigener_titel  : "Kein Titel als Custom-Attribut gefunden";
+            const inhalt = notification.data.eigener_inhalt ? notification.data.eigener_inhalt : "Kein Inhaltstext als Custom-Attribut gefunden";
+
+            const b = new Benachrichtigung( titel,
+                                            inhalt,
+                                            notification.data.eigenes_attribut,
                                             true // imHintergrundEmpfangen
             ); 
             this.nachrichtenArray.push(b);

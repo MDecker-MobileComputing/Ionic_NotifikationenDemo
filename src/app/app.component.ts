@@ -19,11 +19,10 @@ export class AppComponent {
 
       await this.benachrichtigungsService.registrieren();
 
-      // folgenden Code-Block für Test mit "ionic serve" einkommentieren
+      // Folgenden Code-Block für Test mit "ionic serve" einkommentieren
       /*
-      const b1 = new Benachrichtigung( "Test-Titel 1", "Test-Body 1", false);
-      const b2 = new Benachrichtigung( "Test-Titel 2", "Test-Body 2", true);    
-  
+      const b1 = new Benachrichtigung( "Test-Titel 1", "Test-Body 1", "Wert für eigenes Attribut", false);
+      const b2 = new Benachrichtigung( "Test-Titel 2", "Test-Body 2", "", true);    
       benachrichtigungsService.nachrichtenArray.push(b1);
       benachrichtigungsService.nachrichtenArray.push(b2);      
       */

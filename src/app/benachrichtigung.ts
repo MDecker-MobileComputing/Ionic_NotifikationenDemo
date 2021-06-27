@@ -10,6 +10,7 @@ export class Benachrichtigung {
 
     constructor(public titel: string,
                 public nachrichtenBody: string,
+                public eigenesAttribut: string,
                 public imHintergrundEmpfangen: boolean) {
 
         this.empfangszeitpunkt = new Date();
@@ -57,9 +58,10 @@ export class Benachrichtigung {
      * Getter für Payload (Body) der Nachricht.
      * 
      * @returns Text aus Body der Nachricht oder entsprechender Hinweis, wenn Body
-     *          leer war (d.h. nur aus Leerzeichen bestand; in der Web-Oberfläche 
+     *          leer war (d.h. nur aus Leerzeichen bestand); in der Web-Oberfläche 
      *          kann keine Notifikation abgeschickt werden, wenn nicht mindestens
-     *          ein paar Leerzeichen für den Body der Nachricht eingegeben wurden).
+     *          ein paar Leerzeichen für den Body der Nachricht eingegeben wurden,
+     *          aber im Hintergrund empfangene Nachrichten haben einen leeren Body.
      */
     public getNachrichtenBody(): string {
 
@@ -71,6 +73,24 @@ export class Benachrichtigung {
 
             return this.nachrichtenBody.trim();
         }
+    }
+
+    /**
+     * Getter für Wert von Custom Attribut mit Schlüssel "eigenes_attribut".
+     * 
+     * @returns Wert von Attribut oder Hinweis, dass eigenes Attribut nicht gesetzt war.
+     */
+    public getInhaltEigenesAttribut(): string {
+
+        if (!this.eigenesAttribut) {
+
+            return "Nachricht enthielt keine Daten unter Schlüssel \"eigenes_attribut\".";
+
+        } else {
+
+            return this.eigenesAttribut;
+        }
+
     }
 
 }
