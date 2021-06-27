@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { PushNotifications, PushNotificationSchema, ActionPerformed } from '@capacitor/push-notifications';
 import { HelferleinService } from './helferlein.service';
 import { Capacitor } from '@capacitor/core';
+import { Benachrichtigung } from './benachrichtigung';
 
 /**
  * Diese Service-Klasse kapselt die Logik für den Empfang von Push-Notifikationen
@@ -17,8 +18,8 @@ import { Capacitor } from '@capacitor/core';
 })
 export class BenachrichtigungsService {
 
-  /** Array aller empfangenen Benachrichtigungen. */
-  public nachrichtenArray: PushNotificationSchema[] = [];
+  /** Array aller empfangenen Benachrichtigungen, wird auf UI in Liste dargestellt. */
+  public nachrichtenArray: Benachrichtigung[] = [];
 
   /**
    * Konstruktor für Dependency Injection.
@@ -54,8 +55,13 @@ export class BenachrichtigungsService {
                                 "pushNotificationReceived",
                                 async (benachrichtigung: PushNotificationSchema) => {
 
-                                    this.helferlein.zeigeToast(`Push-Nachricht mit Titel "${benachrichtigung.title}" empfangen.`);
-                                    this.nachrichtenArray.push(benachrichtigung);
+                                    this.helferlein.zeigeToast(`Push-Nachricht mit Titel "${benachrichtigung.title}" empfangen: ${benachrichtigung.body}`);
+
+                                    const b = new Benachrichtigung( benachrichtigung.title,                                                                 
+                                                                    benachrichtigung.body,
+                                                                    false // imHintergrundEmpfangen
+                                                                  ); 
+                                    this.nachrichtenArray.push(b);
                                 }
                               );
       console.log("Event-Handler für >pushNotificationReceived< definiert.");
@@ -71,8 +77,14 @@ export class BenachrichtigungsService {
         "pushNotificationActionPerformed",
         async (benachrichtigung: ActionPerformed) => {
 
-          this.helferlein.zeigeToast("Auf Push-Nachricht geklickt, die empfangen wurde, während die App nicht im Vordergrund war.");
-          this.nachrichtenArray.push(benachrichtigung.notification);
+            this.helferlein.zeigeToast("Auf Push-Nachricht geklickt, die empfangen wurde, während die App nicht im Vordergrund war.");
+
+            const notification = benachrichtigung.notification;
+            const b = new Benachrichtigung( notification.title, 
+                                            notification.body,
+                                            true // imHintergrundEmpfangen
+            ); 
+            this.nachrichtenArray.push(b);
         }
       );
       console.log("Event-Handler für >pushNotificationActionPerformed< definiert.");

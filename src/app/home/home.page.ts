@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { BenachrichtigungsService } from '../benachrichtigungs.service';
 
 
+/**
+ * Hauptseite, zeigt Liste der empfangenen Nachrichten an.
+ */
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -9,6 +12,9 @@ import { BenachrichtigungsService } from '../benachrichtigungs.service';
 })
 export class HomePage {
 
+  /**
+   * Konstruktor für Dependency Injection
+   */
   constructor(private benachrichtigungsService: BenachrichtigungsService) {}
 
 }
