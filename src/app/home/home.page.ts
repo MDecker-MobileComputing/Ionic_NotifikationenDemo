@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { BenachrichtigungsService } from '../benachrichtigungs.service';
+
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,6 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private benachrichtigungsService: BenachrichtigungsService) {}
 
 }

@@ -67,12 +67,12 @@ export class BenachrichtigungsService {
    */
   private async eventHandlerFuerKlickAufHintergrundBenachrichtigungRegistrieren() {
 
-      //pushNotificationActionPerformed
       await PushNotifications.addListener(
         "pushNotificationActionPerformed",
         async (benachrichtigung: ActionPerformed) => {
 
           this.helferlein.zeigeToast("Auf Push-Nachricht geklickt, die empfangen wurde, während die App nicht im Vordergrund war.");
+          this.nachrichtenArray.push(benachrichtigung.notification);
         }
       );
       console.log("Event-Handler für >pushNotificationActionPerformed< definiert.");
