@@ -4,6 +4,7 @@ import { PushNotifications, PushNotificationSchema, ActionPerformed } from '@cap
 import { HelferleinService } from './helferlein.service';
 import { Capacitor } from '@capacitor/core';
 import { Benachrichtigung } from './benachrichtigung';
+import { ChangeDetectorRef } from "@angular/core";
 
 /**
  * Diese Service-Klasse kapselt die Logik für den Empfang von Push-Notifikationen
@@ -20,6 +21,8 @@ export class BenachrichtigungsService {
 
   /** Array aller empfangenen Benachrichtigungen, wird auf UI in Liste dargestellt. */
   public nachrichtenArray: Benachrichtigung[] = [];
+
+  public changeDetector: ChangeDetectorRef;
 
   /**
    * Konstruktor für Dependency Injection.
@@ -63,6 +66,7 @@ export class BenachrichtigungsService {
                                                                     false // imHintergrundEmpfangen
                                                                   ); 
                                     this.nachrichtenArray.push(b);
+                                    if (this.changeDetector != null) { this.changeDetector.detectChanges(); }
                                 }
                               );
       console.log("Event-Handler für >pushNotificationReceived< definiert.");
@@ -93,6 +97,7 @@ export class BenachrichtigungsService {
                                             true // imHintergrundEmpfangen
             ); 
             this.nachrichtenArray.push(b);
+            if (this.changeDetector != null) { this.changeDetector.detectChanges(); }
         }
       );
       console.log("Event-Handler für >pushNotificationActionPerformed< definiert.");
