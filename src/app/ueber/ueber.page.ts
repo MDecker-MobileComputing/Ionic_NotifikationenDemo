@@ -24,7 +24,7 @@ export class UeberPage implements OnInit {
   /**
    * Konstruktor für Dependency Injection.
    */
-  constructor(private helferlein: HelferleinService) { }              
+  constructor(private helferlein: HelferleinService) { }
 
   /**
    * Lifecycle-Methode, liest Token (wenn vorhanden) aus und schreibt
@@ -37,8 +37,8 @@ export class UeberPage implements OnInit {
       .catch((fehler) => { this.fcmToken = fehler + "" });
 
     PushNotifications.checkPermissions()
-                     .then( (ergebnis) => {this.berechtigungsStatus = ergebnis.receive;} )                  
-                     .catch((fehler) => {this.berechtigungsStatus = fehler});
+                     .then(  (ergebnis) => {this.berechtigungsStatus = ergebnis.receive;} )
+                     .catch( (fehler) => {this.berechtigungsStatus = fehler} );
   }
 
 
@@ -49,7 +49,7 @@ export class UeberPage implements OnInit {
    */
   public async onZwischenablageButton() {
 
-    await Clipboard.write({string: this.fcmToken});          
+    await Clipboard.write({string: this.fcmToken});
     await this.helferlein.zeigeToast("Text wurde in die Zwischenablage kopiert.");
   }
 

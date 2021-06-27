@@ -12,7 +12,7 @@ In the [Firebase Console](https://console.firebase.google.com), you have to go t
 and open the project settings:
 * If not already existing, you have to create an Android app on tab "General".
 * Download file `google-services.json` on the card for this app.
-* Replace [this file](android/app/google-services.json) with the file downloaded from the *Firebase Console*.
+* Replace [this file](android/app/google-services.json) in folder `android/app/` with the file downloaded from the *Firebase Console*.
 
 <br>
 
