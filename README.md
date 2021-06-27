@@ -6,6 +6,22 @@ This repository contains a simple [Ionic](https://ionicframework.com/) app using
 
 ----
 
+## Download of configuration file for Android ##
+
+In the [Firebase Console](https://console.firebase.google.com), you have to go to the corresponding project
+and open the project settings:
+* If not already existing, you have to create an Android app on tab "General".
+* Download file `google-services.json` on the card for this app.
+* Replace [this file](android/app/google-services.json) with the file downloaded from the *Firebase Console*.
+
+<br>
+
+See also section "Get config file for your Android app" in [this article](https://support.google.com/firebase/answer/7015592?hl=en#zippy=%2Cin-this-article) on *support.google.com*.
+
+<br>
+
+----
+
 ## License ##
 
 See the [LICENSE file](LICENSE.md) for license rights and limitations (BSD 3-Clause License) for the files in this repository.
