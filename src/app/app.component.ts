@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { MenuController } from '@ionic/angular';
 import { BenachrichtigungsService } from './benachrichtigungs.service';
-import { Benachrichtigung } from './benachrichtigung';
+//import { Benachrichtigung } from './benachrichtigung';
 
 @Component({
   selector: 'app-root',
