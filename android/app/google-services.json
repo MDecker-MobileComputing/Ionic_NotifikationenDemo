@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "",
-    "project_id": "notifikationen-demo",
-    "storage_bucket": "notifikationen-demo.appspot.com"
+    "project_number": "138717989082",
+    "project_id": "notifikationen-juli-2024",
+    "storage_bucket": "notifikationen-juli-2024.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "",
+        "mobilesdk_app_id": "1:138717989082:android:a7fce8771b3c44e3a3fde3",
         "android_client_info": {
-          "package_name": "de.mide.ionic.notifikationsdemo"
+          "package_name": "de.mide.ionic.pushnotifikationen"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": ""
+          "current_key": "AIzaSyDiic2-PMIHkV3sbc4vlolX4NbgjegPUls"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

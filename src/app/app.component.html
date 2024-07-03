@@ -1,5 +1,5 @@
 <ion-app>
-  <ion-menu side="start" menuId="first">
+  <ion-menu contentId="main-content">
     <ion-header>
       <ion-toolbar color="primary">
         <ion-title>Notifikationen-Demo</ion-title>
@@ -12,5 +12,5 @@
       </ion-list>
     </ion-content>
   </ion-menu>
-  <ion-router-outlet main></ion-router-outlet><!-- Attribut "main" ist wichtig, siehe https://www.damirscorner.com/blog/posts/20190906-MakingAMenuWorkInIonic4.html -->
+  <ion-router-outlet id="main-content"></ion-router-outlet>
 </ion-app>

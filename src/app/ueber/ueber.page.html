@@ -7,19 +7,19 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
 
     <ion-label>Token, um Installation der App mit <i>Firebase Cloud Messaging (FCM)</i> direkt zu adressieren:</ion-label>
 
-    <ion-textarea 
+    <ion-textarea
       readonly
-      rows="5" 
+      rows="5"
       [(ngModel)]="fcmToken">
     </ion-textarea>
 
     &nbsp;
 
-    <ion-button expand="block" 
+    <ion-button expand="block"
                 color="primary"
                 (click)="onZwischenablageButton()">In Zwischenablage kopieren</ion-button>
     &nbsp;

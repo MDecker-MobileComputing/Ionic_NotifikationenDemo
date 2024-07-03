@@ -37,8 +37,8 @@ export class UeberPage implements OnInit {
       .catch((fehler) => { this.fcmToken = fehler + "" });
 
     PushNotifications.checkPermissions()
-                     .then(  (ergebnis) => {this.berechtigungsStatus = ergebnis.receive;} )
-                     .catch( (fehler) => {this.berechtigungsStatus = fehler} );
+                     .then(  (ergebnis) => { this.berechtigungsStatus = ergebnis.receive; } )
+                     .catch( (fehler)   => { this.berechtigungsStatus = fehler            } );
   }
 
 

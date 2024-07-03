@@ -22,11 +22,15 @@ export class BenachrichtigungsService {
   /** Array aller empfangenen Benachrichtigungen, wird auf UI in Liste dargestellt. */
   public nachrichtenArray: Benachrichtigung[] = [];
 
-  /** 
-   * Object wird von Hauptseite gesetzt, damit es über eine Änderung im Array benachrichtigt wird 
+  /**
+   * Object wird von Hauptseite gesetzt, damit es über eine Änderung im Array benachrichtigt wird
    * eine Aktualisierung der Liste durchführen kann.
-   */ 
-  public changeDetector: ChangeDetectorRef;
+   * <br><br>
+   *
+   * Das Ausrufezeichen hinter dem Namen der Variable ist ein TypeScript-Feature, das besagt, dass
+   * das Attribut erst später initialisiert wird. Es wird also erst zur Laufzeit gesetzt.
+   */
+  public changeDetector!: ChangeDetectorRef;
 
   /**
    * Konstruktor für Dependency Injection.
@@ -74,11 +78,11 @@ export class BenachrichtigungsService {
 
                                     this.helferlein.zeigeToast(`Push-Nachricht mit Titel "${benachrichtigung.title}" empfangen: ${benachrichtigung.body}`);
 
-                                    const b = new Benachrichtigung( benachrichtigung.title,                                                                 
-                                                                    benachrichtigung.body,
+                                    const b = new Benachrichtigung( benachrichtigung.title || "Kein Titel gefunden",
+                                                                    benachrichtigung.body  || "Kein Body gefunden",
                                                                     benachrichtigung.data.eigenes_attribut,
                                                                     false // imHintergrundEmpfangen
-                                                                  ); 
+                                                                  );
                                     this.neueBenachrichtigungInListe(b);
                                 }
                               );
@@ -97,7 +101,7 @@ export class BenachrichtigungsService {
             this.helferlein.zeigeToast("Auf Push-Nachricht geklickt, die empfangen wurde, während die App nicht im Vordergrund war.");
 
             const notification = benachrichtigung.notification;
-          
+
             // Wenn die Benachrichtigung im Hintergrund empfangen wurde, dann stehen titel und body nicht zur Verfügung,
             // wir verwenden deshalb eigene Attribute.
             const titel  = notification.data.eigener_titel  ? notification.data.eigener_titel  : "Kein Titel als Custom-Attribut gefunden";
@@ -107,7 +111,7 @@ export class BenachrichtigungsService {
                                             inhalt,
                                             notification.data.eigenes_attribut,
                                             true // imHintergrundEmpfangen
-            ); 
+            );
             this.neueBenachrichtigungInListe(b);
         }
       );

@@ -1,4 +1,4 @@
-package de.mide.ionic.notifikationsdemo;
+package de.mide.ionic.pushnotifikationen;
 
 import com.getcapacitor.BridgeActivity;
 

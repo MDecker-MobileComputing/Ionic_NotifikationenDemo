@@ -15,8 +15,8 @@ export class HomePage {
   /**
    * Konstruktor für Dependency Injection.
    */
-  constructor(private benachrichtigungsService: BenachrichtigungsService,
-              public changeDetector: ChangeDetectorRef) {
+  constructor( public benachrichtigungsService: BenachrichtigungsService,
+               public changeDetector          : ChangeDetectorRef ) {
 
       benachrichtigungsService.changeDetector = changeDetector;
   }
