@@ -9,6 +9,7 @@ import { ToastController } from '@ionic/angular';
 
     constructor( public toastController: ToastController ) { }
 
+
     /**
      * Hilfsmethode zum Anzeigen einer Nachricht in einem Toast-Objekt.
      *

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BenachrichtigungsService } from '../benachrichtigungs.service';
 import { ChangeDetectorRef } from "@angular/core";
 
+
 /**
  * Hauptseite, zeigt Liste der empfangenen Nachrichten an.
  */
@@ -11,6 +12,7 @@ import { ChangeDetectorRef } from "@angular/core";
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+
 
   /**
    * Konstruktor für Dependency Injection.

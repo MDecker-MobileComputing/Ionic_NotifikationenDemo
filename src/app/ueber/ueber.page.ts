@@ -21,10 +21,12 @@ export class UeberPage implements OnInit {
   /** Member-Variable mit Berechtigungsstatus wird an UI-Element gebunden. */
   public berechtigungsStatus: String = "<unbekannt>";
 
+
   /**
    * Konstruktor für Dependency Injection.
    */
   constructor(private helferlein: HelferleinService) { }
+
 
   /**
    * Lifecycle-Methode, liest Token (wenn vorhanden) aus und schreibt
@@ -34,7 +36,7 @@ export class UeberPage implements OnInit {
 
     FCM.getToken()
       .then((antwort) => { this.fcmToken = antwort.token })
-      .catch((fehler) => { this.fcmToken = fehler + "" });
+      .catch((fehler) => { this.fcmToken = fehler + ""   });
 
     PushNotifications.checkPermissions()
                      .then(  (ergebnis) => { this.berechtigungsStatus = ergebnis.receive; } )

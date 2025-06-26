@@ -6,6 +6,7 @@ import { Capacitor } from '@capacitor/core';
 import { Benachrichtigung } from './benachrichtigung';
 import { ChangeDetectorRef } from "@angular/core";
 
+
 /**
  * Diese Service-Klasse kapselt die Logik für den Empfang von Push-Notifikationen
  * vom "Firebase Cloud Messaging (FCM)".
@@ -32,10 +33,12 @@ export class BenachrichtigungsService {
    */
   public changeDetector!: ChangeDetectorRef;
 
+
   /**
    * Konstruktor für Dependency Injection.
    */
   constructor(private helferlein: HelferleinService) { }
+
 
   /**
    * Registriert die App für den Empfang von Push-Nachrichten.
@@ -56,6 +59,7 @@ export class BenachrichtigungsService {
       await this.eventHandlerFuerKlickAufHintergrundBenachrichtigungRegistrieren();
   }
 
+
   /**
    * Fügt neue Benachrichtigung in Array ein und löst einen Refresh aus.
    * @param benachrichtigung In Array einzufügendes Element
@@ -66,6 +70,7 @@ export class BenachrichtigungsService {
     if (this.changeDetector != null) { this.changeDetector.detectChanges(); }
   }
 
+
   /**
    * Event-Handler für den Empfang von Push-Nachrichten definieren, wenn die App zu diesem
    * Zeitpunkt im **Vordergrund** ist.
@@ -73,20 +78,21 @@ export class BenachrichtigungsService {
    private async eventHandlerFuerVordergrundBenachrichtigungenRegistrieren() {
 
       await PushNotifications.addListener(
-                                "pushNotificationReceived",
-                                async (benachrichtigung: PushNotificationSchema) => {
+              "pushNotificationReceived",
+              async (benachrichtigung: PushNotificationSchema) => {
 
-                                    this.helferlein.zeigeToast(`Push-Nachricht mit Titel "${benachrichtigung.title}" empfangen: ${benachrichtigung.body}`);
+                  this.helferlein.zeigeToast(`Push-Nachricht mit Titel "${benachrichtigung.title}" empfangen: ${benachrichtigung.body}`);
 
-                                    const b = new Benachrichtigung( benachrichtigung.title || "Kein Titel gefunden",
-                                                                    benachrichtigung.body  || "Kein Body gefunden",
-                                                                    benachrichtigung.data.eigenes_attribut,
-                                                                    false // imHintergrundEmpfangen
-                                                                  );
-                                    this.neueBenachrichtigungInListe(b);
-                                }
-                              );
+                  const b = new Benachrichtigung( benachrichtigung.title || "Kein Titel gefunden",
+                                                  benachrichtigung.body  || "Kein Body gefunden",
+                                                  benachrichtigung.data.eigenes_attribut,
+                                                  false // imHintergrundEmpfangen
+                                                );
+                  this.neueBenachrichtigungInListe(b);
+              }
+            );
   }
+
 
   /**
    * Event-Handler für Klick auf eine Benachrichtigung registrieren, die empfangen wurde,
